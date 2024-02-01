@@ -1,5 +1,6 @@
 import { TabGroup, Tab } from "electron-tabs";
 import { create } from "nouislider";
+import { handlePresetChange } from "./sliders";
 
 // Code to inject into the webview, to prevent jsPDF from intercepting keybinds
 const keyInterceptor: string = `
@@ -42,7 +43,7 @@ function setupTab(tab: Tab, tabCssKey: Map<Tab, string>, debug = false) {
 		content?.executeJavaScript(keyInterceptor);
 		let style = "div#viewer .page {";
 		style +=
-			"filter: brightness(0.91) grayscale(0.95) invert(0.95) sepia(0.55) hue-rotate(180deg);";
+			"filter: brightness(0.91) grayscale(0) invert(0.95) sepia(0) hue-rotate(180deg);";
 		style += "border-image: none;";
 		style += "}";
 		// @ts-ignore
@@ -181,7 +182,7 @@ function setupSliders(
 	});
 
 	create(grayscaleSliderElement, {
-		start: 95,
+		start: 0,
 		step: 1,
 		connect: "lower",
 		range: {
@@ -227,7 +228,7 @@ function setupSliders(
 	});
 
 	create(sepiaSliderElement, {
-		start: 55,
+		start: 0,
 		step: 1,
 		connect: "lower",
 		range: {
