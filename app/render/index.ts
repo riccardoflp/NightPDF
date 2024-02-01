@@ -107,6 +107,9 @@ async function nightPDF() {
 	const redeyeButton: HTMLElement = document.getElementById(
 		"redeye-button",
 	) as HTMLElement;
+	const invertedButton: HTMLElement = document.getElementById(
+		"inverted-button",
+	) as HTMLElement;
 	const customButton: HTMLElement = document.getElementById(
 		"custom-button",
 	) as HTMLElement;
@@ -336,6 +339,7 @@ async function nightPDF() {
 			defaultButton.className = "button active";
 			sepiaButton.className = "button";
 			redeyeButton.className = "button";
+			invertedButton.className = "button";
 			customButton.className = "button";
 			handlePresetChange(
 				"default",
@@ -358,6 +362,7 @@ async function nightPDF() {
 			defaultButton.className = "button";
 			sepiaButton.className = "button active";
 			redeyeButton.className = "button";
+			invertedButton.className = "button";
 			customButton.className = "button";
 			handlePresetChange(
 				"sepia",
@@ -380,6 +385,7 @@ async function nightPDF() {
 			defaultButton.className = "button";
 			sepiaButton.className = "button";
 			redeyeButton.className = "button active";
+			invertedButton.className = "button";
 			customButton.className = "button";
 			handlePresetChange(
 				"redeye",
@@ -393,6 +399,31 @@ async function nightPDF() {
 		}
 		e.stopPropagation();
 	});
+	// setup dom listeners
+	invertedButton.addEventListener("click", (e: Event) => {
+		// do default styling
+
+		if (invertedButton.className.includes("active")) {
+			toggleDarkConfigurator(darkConfiguratorElement);
+		} else {
+			defaultButton.className = "button";
+			sepiaButton.className = "button";
+			redeyeButton.className = "button";
+			invertedButton.className = "button active";
+			customButton.className = "button";
+			handlePresetChange(
+				"inverted",
+				brightnessSliderElement,
+				grayscaleSliderElement,
+				invertSliderElement,
+				sepiaSliderElement,
+				extraBrightnessSliderElement,
+				hueSliderElement,
+			);
+		}
+
+		e.stopPropagation();
+	});
 
 	customButton.addEventListener("click", (e: Event) => {
 		// do default styling
@@ -401,6 +432,7 @@ async function nightPDF() {
 			defaultButton.className = "button";
 			sepiaButton.className = "button";
 			redeyeButton.className = "button";
+			invertedButton.className = "button";
 			customButton.className = "button active";
 			handlePresetChange(
 				"original",

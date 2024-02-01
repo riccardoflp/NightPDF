@@ -47,6 +47,14 @@ function handlePresetChange(
 			hue.set(0);
 			extraBrightness.set(-30);
 			break;
+		case "inverted":
+			brightness.set(7);
+			grayness.set(0);
+			inversion.set(95);
+			sepia.set(0);
+			hue.set(180);
+			extraBrightness.set(0);
+			break;
 		default:
 			brightness.set(9);
 	}
